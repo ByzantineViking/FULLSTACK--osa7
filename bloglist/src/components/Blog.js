@@ -1,16 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-const Blog = ({ blog, like, remove, creator }) => {
-    const [expanded, setExpanded] = useState(false)
-    const blogStyle = {
-        paddingTop: 10,
-        paddingLeft: 2,
-        border: 'solid',
-        borderWidth: 1,
-        marginBottom: 5
-    }
-
+import { Table } from 'semantic-ui-react'
+const Blog = ({ blog, like, remove, creator, expanded, setExpanded, visibility }) => {
     const details = () => (
         <div className='details'>
             <a href={blog.url}>{blog.url}</a>
@@ -21,14 +13,20 @@ const Blog = ({ blog, like, remove, creator }) => {
             {creator && (<button onClick={() => remove(blog)}>remove </button>)}
         </div>
     )
-
     return (
-        <div style={blogStyle}>
-            <div onClick={() => setExpanded(!expanded)} className='name'>
-                <Link to={`/blogs/${blog.id}`}>{blog.title} {blog.author}</Link>
-            </div>
-            {expanded && details()}
-        </div>
+        <Table.Row>
+            <Table.Cell onClick={() => setExpanded(!expanded)} className='name' style={{ cursor: 'pointer' }}>
+                <Link to={`/blogs/${blog.id}`}>
+                    {blog.title}
+                </Link>
+            </Table.Cell>
+            <Table.Cell>
+                {blog.author}
+            </Table.Cell>
+            <Table.Cell style={{ display: visibility() }}>
+                {expanded && details()}
+            </Table.Cell>
+        </Table.Row>
     )
 }
 

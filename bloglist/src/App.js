@@ -8,6 +8,9 @@ import Notification from './components/Notification'
 import UserList from './components/UserList'
 import { useField } from './hooks'
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
+// Styling
+import { Container, Form, Button, Menu } from 'semantic-ui-react'
+
 // Reducers
 import { setNotification, setBlogs, setUser, setUsers } from './reducers/appreducers'
 import User from './components/User'
@@ -91,23 +94,23 @@ const App = (props) => {
 
     if (props.user === null) {
         return (
-            <div>
+            <Container>
                 <h2>log in to application</h2>
 
                 <Notification/>
 
-                <form onSubmit={handleLogin}>
-                    <div>
+                <Form onSubmit={handleLogin}>
+                    <Form.Field>
                         Username
                         <input {...username} />
-                    </div>
-                    <div>
+                    </Form.Field>
+                    <Form.Field>
                         Password
                         <input {...password} />
-                    </div>
-                    <button type="submit">Log in</button>
-                </form>
-            </div>
+                    </Form.Field>
+                    <Button type="submit">Log in</Button>
+                </Form>
+            </Container>
         )
     }
 
@@ -121,13 +124,19 @@ const App = (props) => {
 
     return (
         <Router>
-            <div>
-                <div>
-                    <Link to='/users' style={padding}>Users</Link>
-                    <Link to='/blogs' style={padding}>Blogs</Link>
-                    <p>{props.user.name} logged in</p>
-                    <button onClick={handleLogout}>logout</button>
-                </div>
+            <Container>
+                <Menu>
+                    <Menu.Item>
+                        <Link to='/users' style={padding}>Users</Link>
+                    </Menu.Item>
+                    <Menu.Item>
+                        <Link to='/blogs' style={padding}>Blogs</Link>
+                    </Menu.Item>
+                    <Menu.Item>
+                        <div style={{ marginRight:'10px' }}>{props.user.name} logged in</div>
+                        <Button onClick={handleLogout}>logout</Button>
+                    </Menu.Item>
+                </Menu>
                 <Notification />
                 <Route exact path='/blogs' render={() =>
                     <BlogList byLikes={byLikes} likeBlog={likeBlog} removeBlog={removeBlog} createBlog={createBlog} newBlogRef={newBlogRef}/>}
@@ -141,7 +150,7 @@ const App = (props) => {
                 <Route path='/blogs/:id' render={({ match }) =>
                     <BlogView id={match.params.id} like={likeBlog} not={notify}/>
                 } />
-            </div>
+            </Container>
         </Router>
     )
 }

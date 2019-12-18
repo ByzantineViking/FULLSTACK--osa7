@@ -1,25 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Container, Message } from 'semantic-ui-react'
 
 
 const Notification = (props) => {
     if (!props.notification.message) {
         return null
     }
-    const style = {
-        color: props.notification.outcome === 'error' ? 'red' : 'green',
-        background: 'lightgrey',
-        fontSize: 20,
-        borderStyle: 'solid',
-        borderRadius: 5,
-        padding: 10,
-        marginBottom: 10,
-    }
+    console.log(props)
+    const col = props.notification.outcome  === 'error' ? 'red' : 'green'
 
     return (
-        <div style={style}>
-            {props.notification.outcome === 'error' ? 'Succesfully removed the blog' : props.notification.message}
-        </div>
+        <Container>
+            <Message color={col}>
+                {props.notification.outcome === 'error' ? 'Removed the blog' : props.notification.message}
+            </Message>
+        </Container>
     )
 }
 const mapStateToProps = (state) => {
