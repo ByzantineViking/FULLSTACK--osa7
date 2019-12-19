@@ -102,13 +102,13 @@ const App = (props) => {
                 <Form onSubmit={handleLogin}>
                     <Form.Field>
                         Username
-                        <input {...username} />
+                        <input id='username' {...username} />
                     </Form.Field>
                     <Form.Field>
                         Password
-                        <input {...password} />
+                        <input id='password'{...password} />
                     </Form.Field>
-                    <Button type="submit">Log in</Button>
+                    <Button id='loginButton' type="submit">Log in</Button>
                 </Form>
             </Container>
         )

@@ -19,6 +19,9 @@ module.exports = {
         "react", "jest",
         "react-hooks"
     ],
+    "globals": {
+        "cy": true
+    },
     "rules": {
         "react-hooks/rules-of-hooks": "error",
         "indent": [

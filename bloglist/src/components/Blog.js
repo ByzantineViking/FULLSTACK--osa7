@@ -15,7 +15,7 @@ const Blog = ({ blog, like, remove, creator, expanded, setExpanded, visibility }
     )
     return (
         <Table.Row>
-            <Table.Cell onClick={() => setExpanded(!expanded)} className='name' style={{ cursor: 'pointer' }}>
+            <Table.Cell data-cy='expand' onClick={() => setExpanded(!expanded)} className='name' style={{ cursor: 'pointer' }}>
                 <Link to={`/blogs/${blog.id}`}>
                     {blog.title}
                 </Link>

@@ -1,3 +1,3 @@
 # FULLSTACK-osa7
 
-React Router, CSS, Webpack
+React Router, Semantic UI, Redux, Webpack configuration, E2E testing, Redux
